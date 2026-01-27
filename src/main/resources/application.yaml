@@ -21,3 +21,6 @@ logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+jwt:
+  secret: your-very-secure-secret-key-at-least-256-bits-long-for-production-use
