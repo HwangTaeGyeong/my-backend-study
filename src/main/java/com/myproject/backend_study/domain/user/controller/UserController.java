@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myproject.backend_study.domain.user.dto.request.LoginRequestDto;
 import com.myproject.backend_study.domain.user.dto.request.SignupRequestDto;
+import com.myproject.backend_study.domain.user.dto.response.LoginResponseDto;
 import com.myproject.backend_study.domain.user.dto.response.SignupResponseDto;
 import com.myproject.backend_study.domain.user.service.UserService;
 
@@ -27,5 +29,14 @@ public class UserController {
 	) {
 		SignupResponseDto responseDto = userService.signup(requestDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<LoginResponseDto> login(
+		@Valid @RequestBody LoginRequestDto requestDto
+	) {
+		LoginResponseDto responseDto = userService.login(requestDto);
+
+		return ResponseEntity.ok(responseDto);
 	}
 }
