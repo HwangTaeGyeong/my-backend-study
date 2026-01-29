@@ -2,11 +2,13 @@ package com.myproject.backend_study.domain.user.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myproject.backend_study.common.security.CurrentUser;
 import com.myproject.backend_study.domain.user.dto.request.LoginRequestDto;
 import com.myproject.backend_study.domain.user.dto.request.SignupRequestDto;
 import com.myproject.backend_study.domain.user.dto.response.LoginResponseDto;
@@ -38,5 +40,12 @@ public class UserController {
 		LoginResponseDto responseDto = userService.login(requestDto);
 
 		return ResponseEntity.ok(responseDto);
+	}
+
+	// 현재 로그인한 사용자 정보를 반환하는 API입니다
+	@GetMapping("/me")
+	public ResponseEntity<CurrentUser> getCurrentUser(CurrentUser currentUser) {
+		// CurrentUser 객체가 자동으로 주입됩니다
+		return ResponseEntity.ok(currentUser);
 	}
 }
