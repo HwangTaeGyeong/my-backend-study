@@ -28,10 +28,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		// 2. User 엔티티를 Spring Security의 UserDetails로 변환
 		// UserDetails는 Spring Security가 사용자 정보를 다루는 표준 인터페이스
-		return org.springframework.security.core.userdetails.User.builder()
-			.username(user.getEmail())
-			.password(user.getPassword())
-			.authorities(new ArrayList<>())  // 일단 권한은 비워둡니다
-			.build();
+		return new UserDetailsImpl(user);
 	}
 }
